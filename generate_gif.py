@@ -10,10 +10,10 @@ import gifos.utils
 # ─── Configuration ───────────────────────────────────────────────
 USER_NAME = "brkNx"
 DISPLAY_NAME = "brkNx"
-TERMINAL_WIDTH = 520
-TERMINAL_HEIGHT = 320
-XPAD = 8
-YPAD = 8
+TERMINAL_WIDTH = 960
+TERMINAL_HEIGHT = 540
+XPAD = 16
+YPAD = 16
 
 # ─── ANSI Colors (Matrix/Hacker theme) ──────────────────────────
 GREEN = "\x1b[32m"
