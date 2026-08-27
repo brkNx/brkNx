@@ -246,7 +246,7 @@ def main():
     row = 1
 
     matrix_chars = "01"
-    for frame in range(20):
+    for frame in range(8):
         t.clear_frame()
         row = 1
         for r in range(20):

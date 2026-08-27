@@ -6,4 +6,4 @@
 
 ---
 
-![Hacker Terminal](https://i.ibb.co/Q7Y898qT/aab2221b4ab5.gif)
+![Hacker Terminal](https://i.ibb.co/Dg6hnSS9/75dfa5d7b445.gif)
