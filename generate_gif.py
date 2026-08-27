@@ -17,9 +17,11 @@ YPAD = 16
 
 # ─── ANSI Colors (Matrix/Hacker theme) ──────────────────────────
 GREEN = "\x1b[32m"
+BRIGHT_GREEN = "\x1b[92m"
 RED = "\x1b[31m"
 YELLOW = "\x1b[33m"
 BLUE = "\x1b[34m"
+MAGENTA = "\x1b[35m"
 CYAN = "\x1b[36m"
 WHITE = "\x1b[37m"
 GRAY = "\x1b[90m"
@@ -28,7 +30,6 @@ RESET = "\x1b[0m"
 
 
 def hold(t, n):
-    """Hold current frame by cloning it n times."""
     t.clone_frame(count=n)
 
 
@@ -39,7 +40,7 @@ def main():
         xpad=XPAD,
         ypad=YPAD,
     )
-    t.set_fps(12)
+    t.set_fps(15)
     t.toggle_show_cursor(False)
 
     row = 1
@@ -59,48 +60,79 @@ def main():
     row += 1
     row += 1
     t.gen_text(text=f"{YELLOW}Press DEL to enter SETUP, ESC to cancel Memory Test{RESET}", row_num=row, contin=True)
-    hold(t, 10)
+    hold(t, 15)
 
-    # ═══ Phase 2: Boot Sequence ══════════════════════════════════
+    # ═══ Phase 2: Memory Count ═══════════════════════════════════
+    t.clear_frame()
+    row = 1
+    t.gen_text(text=f"{BOLD}{RED}BRKN BIOS v3.14.159{RESET}", row_num=row, contin=True)
+    row += 1
+    t.gen_text(text=f"{GRAY}Copyright (C) 2026, BRKN Softwares Inc.{RESET}", row_num=row, contin=True)
+    row += 1
+    row += 1
+    t.gen_text(text=f"{CYAN}Hacker Terminal ReadMe, Rev 2026{RESET}", row_num=row, contin=True)
+    row += 1
+    row += 1
+    t.gen_text(text=f"{WHITE}Krypton(tm) CPUBRK - 5.0GHz{RESET}", row_num=row, contin=True)
+    row += 1
+    mem_count = [8192, 16384, 32768, 49152, 65536]
+    for m in mem_count:
+        t.gen_text(text=f"{WHITE}Memory Test: {m} MB{RESET}", row_num=row, contin=True)
+        hold(t, 3)
+    row += 1
+    row += 1
+    t.gen_text(text=f"{GREEN}Memory Test Passed.{RESET}", row_num=row, contin=True)
+    row += 1
+    t.gen_text(text=f"{YELLOW}Press DEL to enter SETUP, ESC to cancel Memory Test{RESET}", row_num=row, contin=True)
+    hold(t, 8)
+
+    # ═══ Phase 3: Boot Sequence ══════════════════════════════════
     t.clear_frame()
     row = 1
 
     boot_lines = [
-        f"{GREEN}[  OK  ]{RESET} Started BRKN Security Module.",
-        f"{GREEN}[  OK  ]{RESET} Reached target Graphical Interface.",
-        f"{GREEN}[  OK  ]{RESET} Started GNOME Display Manager.",
-        f"{GREEN}[  OK  ]{RESET} Network Manager started.",
-        f"{GREEN}[  OK  ]{RESET} Started OpenSSH server daemon.",
-        f"{YELLOW}[ WARN ]{RESET} Root password login disabled.",
-        f"{GREEN}[  OK  ]{RESET} Multi-User System reached.",
-        f"{GREEN}[  OK  ]{RESET} BRKN Terminal Emulator started.",
+        (f"{GREEN}[  OK  ]{RESET} Started BRKN Security Module.", 3),
+        (f"{GREEN}[  OK  ]{RESET} Reached target Graphical Interface.", 3),
+        (f"{GREEN}[  OK  ]{RESET} Started GNOME Display Manager.", 3),
+        (f"{GREEN}[  OK  ]{RESET} Network Manager started.", 2),
+        (f"{GREEN}[  OK  ]{RESET} Started OpenSSH server daemon.", 2),
+        (f"{YELLOW}[ WARN ]{RESET} Root password login disabled.", 4),
+        (f"{GREEN}[  OK  ]{RESET} Multi-User System reached.", 2),
+        (f"{GREEN}[  OK  ]{RESET} BRKN Terminal Emulator started.", 2),
+        (f"{GREEN}[  OK  ]{RESET} Docker daemon started.", 2),
+        (f"{GREEN}[  OK  ]{RESET} System logger started.", 2),
+        (f"{GREEN}[  OK  ]{RESET} Time synchronization started.", 2),
+        (f"{GREEN}[  OK  ]{RESET} BRKN OS ready.{RESET}", 5),
     ]
 
-    for i, line in enumerate(boot_lines):
+    for i, (line, delay) in enumerate(boot_lines):
         t.gen_text(text=line, row_num=row, contin=True)
         row += 1
-        hold(t, 3)
+        hold(t, delay)
 
-    hold(t, 6)
+    hold(t, 8)
 
-    # ═══ Phase 3: Login ══════════════════════════════════════════
+    # ═══ Phase 4: Login ══════════════════════════════════════════
     t.clear_frame()
     row = 1
 
     t.gen_text(text=f"{BOLD}{GREEN}BRKN OS 26.04 LTS (GNU/Linux 6.8.0-brkn){RESET}", row_num=row, contin=True)
     row += 1
+    t.gen_text(text=f"{GRAY}brkn login: {RESET}", row_num=row, contin=True)
+    hold(t, 5)
+    t.gen_text(text=f"{GRAY}brkn login: {GREEN}{USER_NAME}{RESET}", row_num=row, contin=True)
     row += 1
-    t.gen_text(text=f"{WHITE}brkn login: {GREEN}{USER_NAME}{RESET}", row_num=row, contin=True)
-    row += 1
+    hold(t, 3)
     t.gen_text(text=f"{WHITE}Password: {GRAY}********{RESET}", row_num=row, contin=True)
     row += 1
+    hold(t, 5)
     row += 1
-    t.gen_text(text=f"{GREEN}Last login: {YELLOW}Thu Aug 27 14:09:51 2026{RESET}", row_num=row, contin=True)
+    t.gen_text(text=f"{GREEN}Last login: {YELLOW}Thu Aug 27 14:09:51 2026 from 192.168.1.42{RESET}", row_num=row, contin=True)
     row += 1
     t.gen_text(text=f"{GRAY}Welcome to BRKN OS. Type 'help' for available commands.{RESET}", row_num=row, contin=True)
-    hold(t, 8)
+    hold(t, 10)
 
-    # ═══ Phase 4: Neofetch ═══════════════════════════════════════
+    # ═══ Phase 5: Neofetch ═══════════════════════════════════════
     t.clear_frame()
     row = 1
 
@@ -108,37 +140,39 @@ def main():
     github_stats = None
     try:
         github_stats = gifos.utils.fetch_github_stats(user_name=USER_NAME)
-    except (SystemExit, Exception) as e:
-        print(f"[!] GitHub stats unavailable (set GITHUB_TOKEN for live stats)")
+    except (SystemExit, Exception):
+        print(f"[!] GitHub stats unavailable")
 
-    # ASCII Art Logo
+    # ASCII Art Logo - bigger and better
     logo_lines = [
-        f"{GREEN}    _______   {RESET}",
-        f"{GREEN}   /       \\  {RESET}",
-        f"{GREEN}  /  BRKN   \\ {RESET}",
-        f"{GREEN} /           \\{RESET}",
-        f"{GREEN}|  > Terminal |{RESET}",
-        f"{GREEN} \\           /{RESET}",
-        f"{GREEN}  \\_________/ {RESET}",
+        f"{GREEN}         _____  {RESET}",
+        f"{GREEN}        /     \\ {RESET}",
+        f"{GREEN}       / () () \\{RESET}",
+        f"{GREEN}      |   __   |{RESET}",
+        f"{GREEN}      |  |  |  |{RESET}",
+        f"{GREEN}   ___|  |__|  |___{RESET}",
+        f"{GREEN}  /    BRKN OS    \\{RESET}",
+        f"{GREEN} /________________\\{RESET}",
     ]
 
     # Info lines
     info_lines = [
-        f"{BOLD}{GREEN}{DISPLAY_NAME}{RESET}@{GREEN}{USER_NAME}{RESET}",
-        f"{GRAY}------------------{RESET}",
-        f"{GREEN}OS:{RESET} BRKN OS 26.04 LTS",
+        f"{BOLD}{GREEN}{DISPLAY_NAME}{RESET}@{GREEN}brkn-os{RESET}",
+        f"{GRAY}------------------------{RESET}",
+        f"{GREEN}OS:{RESET} BRKN OS 26.04 LTS x86_64",
         f"{GREEN}Host:{RESET} GitHub Profile",
         f"{GREEN}Kernel:{RESET} 6.8.0-brkn",
-        f"{GREEN}Uptime:{RESET} since 2026",
+        f"{GREEN}Uptime:{RESET} 365 days, 4 hours",
         f"{GREEN}Packages:{RESET} 47 (repos)",
         f"{GREEN}Shell:{RESET} zsh 5.9",
-        f"{GREEN}Terminal:{RESET} BRKN-Term",
+        f"{GREEN}Terminal:{RESET} BRKN-Term v2.0",
         f"{GREEN}CPU:{RESET} Krypton CPUBRK @ 5.0GHz",
+        f"{GREEN}GPU:{RESET} NVIDIA RTX 5090 24GB",
         f"{GREEN}Memory:{RESET} 65536MiB / 131072MiB",
     ]
 
     if github_stats:
-        info_lines.append(f"{GRAY}------------------{RESET}")
+        info_lines.append(f"{GRAY}------------------------{RESET}")
         info_lines.append(f"{GREEN}GitHub:{RESET} @{USER_NAME}")
         info_lines.append(f"{GREEN}Stars:{RESET} {YELLOW}{github_stats.total_stargazers}{RESET}")
         info_lines.append(f"{GREEN}Followers:{RESET} {CYAN}{github_stats.total_followers}{RESET}")
@@ -149,7 +183,7 @@ def main():
     # Render side by side
     max_lines = max(len(logo_lines), len(info_lines))
     for i in range(max_lines):
-        left = logo_lines[i] if i < len(logo_lines) else " " * 20
+        left = logo_lines[i] if i < len(logo_lines) else " " * 25
         right = info_lines[i] if i < len(info_lines) else ""
         t.gen_text(text=f"{left}  {right}", row_num=row, contin=True)
         row += 1
@@ -168,17 +202,17 @@ def main():
     row += 1
 
     # System info bar
-    t.gen_text(text=f"{GRAY}+----------------------------------------------+{RESET}", row_num=row, contin=True)
+    t.gen_text(text=f"{GRAY}+-----------------------------------------------+{RESET}", row_num=row, contin=True)
     row += 1
     t.gen_text(
-        text=f"{GRAY}|{RESET} {GREEN}Files:{RESET} 1.2GB  {GREEN}CPU:{RESET} 12%  {GREEN}RAM:{RESET} 50%  {GREEN}NET:{RESET} ^/ v {GRAY}|{RESET}",
+        text=f"{GRAY}|{RESET} {GREEN}Files:{RESET} 1.2TB  {GREEN}CPU:{RESET} 12%  {GREEN}RAM:{RESET} 50%  {GREEN}NET:{RESET} ^12MB/s v8MB/s {GRAY}|{RESET}",
         row_num=row, contin=True,
     )
     row += 1
-    t.gen_text(text=f"{GRAY}+----------------------------------------------+{RESET}", row_num=row, contin=True)
-    hold(t, 12)
+    t.gen_text(text=f"{GRAY}+-----------------------------------------------+{RESET}", row_num=row, contin=True)
+    hold(t, 15)
 
-    # ═══ Phase 5: Command Prompt ═════════════════════════════════
+    # ═══ Phase 6: Command Prompt ═════════════════════════════════
     t.clear_frame()
     row = 1
 
@@ -187,10 +221,14 @@ def main():
     commands = [
         ("neofetch --ascii", f"{GREEN}... system info displayed above ...{RESET}"),
         ("cat /etc/motd", f"{BOLD}{GREEN}  Welcome to BRKN OS - Build. Break. Repeat.{RESET}"),
-        ("curl -s api.github.com/users/brkn | jq .name", f'"{DISPLAY_NAME}"'),
+        ("curl -s api.github.com/users/brkNx | jq .name", f'"{DISPLAY_NAME}"'),
         ("echo $USER", USER_NAME),
         ("date", "Thu Aug 27 14:09:51 IST 2026"),
         ("uname -a", "Linux brkn-os 6.8.0-brkn #1 SMP x86_64 GNU/Linux"),
+        ("uptime", "14:09:51 up 365 days, 4:23, 1 user, load average: 0.42, 0.37, 0.28"),
+        ("df -h /", "/dev/sda1  1.2T  420G  780G  35% /"),
+        ("free -h", "              total    used    free   shared  buff/cache  available"),
+        ("", "Mem:          128Gi   64Gi   32Gi   2.0Gi      32Gi       62Gi"),
     ]
 
     for cmd, output in commands:
@@ -198,17 +236,60 @@ def main():
         row += 1
         t.gen_text(text=output, row_num=row, contin=True)
         row += 1
-        hold(t, 4)
+        hold(t, 3)
 
-    # Final prompt with cursor
-    t.toggle_show_cursor(True)
-    t.toggle_blink_cursor(True)
-    t.gen_text(text=f"{prompt}", row_num=row, contin=True)
+    hold(t, 5)
+
+    # ═══ Phase 7: Matrix Rain Effect ═════════════════════════════
+    t.clear_frame()
+    row = 1
+
+    matrix_chars = "01"
+    for frame in range(20):
+        t.clear_frame()
+        row = 1
+        for r in range(20):
+            line = ""
+            for c in range(60):
+                import random
+                if random.random() < 0.3:
+                    line += f"{GREEN}{random.choice(matrix_chars)}{RESET}"
+                else:
+                    line += " "
+            t.gen_text(text=line, row_num=row, contin=True)
+            row += 1
+        hold(t, 1)
+
+    # ═══ Phase 8: Final Screen ═══════════════════════════════════
+    t.clear_frame()
+    row = 1
+
+    # Big ASCII art
+    big_art = [
+        f"{BOLD}{GREEN}    ____  ____  ____  ____  ____  ____  ____  ____{RESET}",
+        f"{BOLD}{GREEN}   |    ||    ||    ||    ||    ||    ||    ||    |{RESET}",
+        f"{BOLD}{GREEN}   | B  || R  || K  || N  | OS |    ||    ||    |{RESET}",
+        f"{BOLD}{GREEN}   |____||____||____||____||____||____||____||____|{RESET}",
+        f"{BOLD}{GREEN}   |    ||    ||    ||    ||    ||    ||    ||    |{RESET}",
+        f"{BOLD}{GREEN}   | B  || R  || K  || N  |    |    ||    ||    |{RESET}",
+        f"{BOLD}{GREEN}   |____||____||____||____||____||____||____||____|{RESET}",
+    ]
+
+    for line in big_art:
+        t.gen_text(text=line, row_num=row, contin=True)
+        row += 1
+
+    row += 1
+    t.gen_text(text=f"{BOLD}{GREEN}Build. Break. Repeat.{RESET}", row_num=row, contin=True)
+    row += 1
+    row += 1
+    t.gen_text(text=f"{GRAY}Generated using github-readme-terminal{RESET}", row_num=row, contin=True)
+    hold(t, 20)
 
     # ═══ Generate GIF ════════════════════════════════════════════
     print("[*] Generating GIF frames...")
     t.gen_gif()
-    print("[✓] GIF generated: output.gif")
+    print("[+] GIF generated: output.gif")
 
 
 if __name__ == "__main__":
