@@ -1,6 +1,6 @@
 ### `> whoami`
 
-**brkNx** · Software Developer · Istanbul
+**brkNx** · Computer Engineer · Istanbul
 
 > **Build. Break. Repeat.**
 
