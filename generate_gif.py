@@ -9,7 +9,7 @@ import gifos.utils
 
 # ─── Configuration ───────────────────────────────────────────────
 USER_NAME = "brkNx"
-DISPLAY_NAME = "Berkan Ünal"
+DISPLAY_NAME = "brkNx"
 TERMINAL_WIDTH = 520
 TERMINAL_HEIGHT = 320
 XPAD = 8
