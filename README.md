@@ -11,5 +11,5 @@
 ---
 
 <p align="center">
-  <img src="https://visitorbadge.laisae.dev/badge?page_id=brkNx.brkNx&path=%2F&style=for-the-badge&label=Visitors&color=22c55e&background=0d1117" alt="Visitor Counter"/>
+  <img src="https://komarev.com/ghpvc/?username=brkNx&color=22c55e&style=for-the-badge&label=PROFILE+VIEWS" alt="Visitor Counter"/>
 </p>
