@@ -6,6 +6,7 @@ Generates a retro hacker-style terminal animation with GitHub stats.
 
 import gifos
 import gifos.utils
+import requests
 
 # ─── Configuration ───────────────────────────────────────────────
 USER_NAME = "brkNx"
@@ -290,6 +291,27 @@ def main():
     print("[*] Generating GIF frames...")
     t.gen_gif()
     print("[+] GIF generated: output.gif")
+
+    # ═══ Upload to imgbb ════════════════════════════════════════
+    print("[*] Uploading to imgbb...")
+    try:
+        import base64
+        with open("output.gif", "rb") as f:
+            img_data = base64.b64encode(f.read()).decode()
+        resp = requests.post(
+            "https://api.imgbb.com/1/upload",
+            data={"key": "f0b8c98aafeb642845592ae4f22ce16c", "image": img_data},
+            timeout=60,
+        )
+        result = resp.json()
+        if result.get("success"):
+            url = result["data"]["url"]
+            print(f"[+] Uploaded: {url}")
+            print(f"[*] Direct link: {url.replace('imgbb.com/', 'i.ibb.co/')}/output.gif")
+        else:
+            print(f"[-] Upload failed: {result.get('error', {}).get('message', 'unknown')}")
+    except Exception as e:
+        print(f"[-] Upload failed: {e}")
 
 
 if __name__ == "__main__":

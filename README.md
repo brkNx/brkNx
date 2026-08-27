@@ -6,4 +6,4 @@
 
 ---
 
-![Hacker Terminal](https://raw.githubusercontent.com/brkNx/brkNx/main/output.gif)
+![Hacker Terminal](https://i.ibb.co/Q7Y898qT/aab2221b4ab5.gif)
