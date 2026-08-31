@@ -6,7 +6,7 @@
 
 ---
 
-![Hacker Terminal](./output.gif)
+![Hacker Terminal](https://raw.githubusercontent.com/syamxm/syamxm/output/terminal.gif)
 
 ---
 
