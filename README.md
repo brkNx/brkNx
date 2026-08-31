@@ -2,7 +2,7 @@
 
 **brkNx** · Computer Engineer · Istanbul
 
-> **Build. Break. Repeat.**
+> 
 
 ---
 
