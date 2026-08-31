@@ -23,6 +23,10 @@
 
 ---
 
+![Hacker Terminal](https://i.ibb.co/Dg6hnSS9/75dfa5d7b445.gif)
+
+---
+
 ```console
 brkNx@arch ~> git log --stat
 ```
