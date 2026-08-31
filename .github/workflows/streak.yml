@@ -1,0 +1,19 @@
+name: Generate Streak Stats
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DenverCoder1/github-readme-streak-stats@v2.7.0
+        with:
+          filename: output/streak.svg
+          theme: dark
+          user: brkNx
