@@ -15,7 +15,13 @@
 
 </div>
 
-<img alt="computer engineer · istanbul · build. break. repeat. · self-hosts everything · open source contributor" src="assets/ticker.svg" width="100%">
+### `> whoami`
+
+**brkNx** · Computer Engineer · Istanbul
+
+> **Build. Break. Repeat.**
+
+---
 
 ```console
 brkNx@arch ~> git log --stat
