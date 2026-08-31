@@ -16,7 +16,7 @@
 
 <img alt="computer engineer · istanbul · build. break. repeat. · open to freelance work" src="assets/ticker.svg" width="100%">
 
-<img alt="terminal boot sequence: BIOS memory test, BRKN OS tty login as brkNx, then a fastfetch panel with host details and live GitHub stats" src="./output.gif" width="100%">
+<img alt="terminal boot sequence: BIOS memory test, CachyOS tty login as brkNx, then a fastfetch panel with host details and live GitHub stats" src="https://raw.githubusercontent.com/syamxm/syamxm/output/terminal.gif" width="100%">
 
 ```console
 brkNx@brkn-os ~> git log --stat
