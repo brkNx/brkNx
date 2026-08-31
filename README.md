@@ -10,16 +10,7 @@
 
 ---
 
-```console
-brkNx@arch ~> git log --stat
-```
-
 <div align="center">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/brkNx/brkNx/output/streak.svg">
-  <img alt="GitHub streak stats" src="https://raw.githubusercontent.com/brkNx/brkNx/output/streak.svg">
-</picture>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/brkNx/brkNx/output/github-contribution-grid-snake-dark.svg">
