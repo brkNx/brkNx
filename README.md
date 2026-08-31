@@ -23,7 +23,7 @@
 
 ---
 
-![Hacker Terminal](https://i.ibb.co/Dg6hnSS9/75dfa5d7b445.gif)
+![Hacker Terminal](./output.gif)
 
 ---
 
