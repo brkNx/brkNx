@@ -15,10 +15,9 @@ jobs:
       - uses: Platane/snk@v3
         with:
           github_user_name: brkNx
-          snake_color: "#22c55e"
           outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            dist/github-contribution-grid-snake.svg?color_snake=#22c55e
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#22c55e
 
       - uses: crazy-max/ghaction-github-pages@v4
         with:
